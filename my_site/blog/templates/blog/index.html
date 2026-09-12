@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %} 
+    My Blog
+{% endblock %}
+
+{% block css_files%}
+<link rel="stylesheet" href="{% static "blog/post.css" %}">
+    <link rel="stylesheet" href="{% static "blog/index.css" %}">
+{% endblock %}
+
+{% block content %}
+    <section id="welcome">
+        <header>
+            <img src="{% static "blog/images/divine.jpg"%}" alt="Divine -The Author of This Blog"/>
+            <h2>Welcome to my Blog!</h2>
+        </header>
+        <p>Here you will find all my thoughts and musings.</p>
+    </section>
+        
+
+    <section id="latest-posts">
+        <h2> My Latest Thoughts</h2>
+
+        <ul>
+            {% for post in posts %}
+                {% include "includes/post.html" %}
+            {% endfor %}
+
+        </ul>
+    </section>
+
+    <section id="about">
+        <h2> About Me</h2>
+        <p> I am Divine, a software developer and tech enthusiast. I love to 
+            share my thoughts and experiences through blogging to help others. When I'm not 
+            coding, you can find me exploring the outdoors or reading a good book. I enjoy 
+            exploring new technologies in general!
+        </p>
+        <p>
+            My goal is to keep on growing as a developer - and if I could help you 
+            do the same, I'd be very happy!
+        </p>
+    </section>
+
+
+    <section id="contact-page" class="contact-section">
+    <div class="container">
+        <h2>Contact Me</h2>
+            <ul class="contact-list">
+      <li>
+        <i class="fas fa-envelope"></i>
+        <a href="mailto:yourname@example.com">idivine098@gmail.com</a>
+      </li>
+      <li>
+        <i class="fab fa-instagram"></i>
+        <a href="https://instagram.com/yourhandle" target="_blank">@dimboy001</a>
+      </li>
+      <li>
+        <i class="fab fa-linkedin"></i>
+        <a href="https://linkedin.com/in/yourprofile" target="_blank">linkedin.com/in/dimboy</a>
+      </li>
+    </ul>
+  </div>
+</section>
+{% endblock %}

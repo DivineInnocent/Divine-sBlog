@@ -1,0 +1,31 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static "app.css" %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    {% block css_files %}
+    {% endblock %}
+
+</head>
+<body>
+{% comment %} {% if is_homepage %} {% endcomment %}
+    <header id="main-navigation">
+        <h1><a href="{% url "starting-page"%}">Divine's Blog</a></h1> 
+    
+        <nav>
+            <a href="{% url "read-later"%}">Stored Posts</a>
+            <a href="{% url "posts-page"%}">All Posts</a>
+        </nav>
+    </header>
+{% comment %} {% endif %} {% endcomment %}
+    {% block content %}
+    {% endblock %}
+</body>
+</html>
