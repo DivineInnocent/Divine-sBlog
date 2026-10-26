@@ -21,16 +21,28 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-6#4$j6wvw1a+c6$(wt(d)3zpasav1jo96-4&52%&c1as#p28z4'
+SECRET_KEY = getenv(
+    "DJANGO_SECRET_KEY",
+    'django-insecure-6#4$j6wvw1a+c6$(wt(d)3zpasav1jo96-4&52%&c1as#p28z4',
+)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = getenv("IS_DEVELOPMENT", True)
+DEBUG = getenv(
+    "IS_DEVELOPMENT",
+    "false" if getenv("VERCEL") else "true",
+).strip().lower() in {"1", "true", "yes"}
 
 ALLOWED_HOSTS = [
     "127.0.0.1",
     "localhost",
-    getenv("APP_HOST")
 ]
+for host in (
+    getenv("APP_HOST"),
+    getenv("VERCEL_URL"),
+    getenv("VERCEL_PROJECT_PRODUCTION_URL"),
+):
+    if host:
+        ALLOWED_HOSTS.append(host)
 
 
 # Application definition
